@@ -1,4 +1,3 @@
-````markdown name=README.md
 # Samsung Health Data Analysis
 
 A Jupyter Notebook project for loading, cleaning, exploring, and visualizing stress data exported from Samsung Health as a CSV file.
