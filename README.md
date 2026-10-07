@@ -1,4 +1,4 @@
-# ked-project-csv
+# Samsung Health Data Analysis
 
 Projekt w formie notatnika Jupyter (`csv-project.ipynb`) do wczytania, wstępnego czyszczenia i analizy danych z pliku CSV wyeksportowanego z aplikacji Samsung Health — w szczególności danych dotyczących **poziomu stresu** w czasie.
 
