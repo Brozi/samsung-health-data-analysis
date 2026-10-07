@@ -1,66 +1,81 @@
+````markdown name=README.md
 # Samsung Health Data Analysis
 
-Projekt w formie notatnika Jupyter (`csv-project.ipynb`) do wczytania, wstępnego czyszczenia i analizy danych z pliku CSV wyeksportowanego z aplikacji Samsung Health — w szczególności danych dotyczących **poziomu stresu** w czasie.
+A Jupyter Notebook project for loading, cleaning, exploring, and visualizing stress data exported from Samsung Health as a CSV file.
 
-## Co robi notebook?
+This project demonstrates a practical data-analysis workflow using **Python**, **pandas**, and **Matplotlib**—from raw exported data to time-based insights and visualizations.
 
-Notebook wykonuje m.in.:
+## Project Highlights
 
-- wczytanie danych z pliku CSV do `pandas.DataFrame`,
-- wybór interesujących kolumn (m.in. czasy pomiaru oraz `Max`, `Min`, `Score`),
-- sprawdzenie zakresu wartości `Score`,
-- obsługę braków danych:
-  - wartości `NaN` w kolumnach liczbowych są wykrywane,
-  - rekordy z brakami są odfiltrowywane (usuwane),
-- konwersję kolumn z datami do typu `datetime`,
-- sortowanie danych po czasie rozpoczęcia pomiaru,
-- wizualizacje:
-  - wykres `Score` w całym zakresie czasowym,
-  - wykresy w wybranych przedziałach dat (przybliżenia / „zoom”),
-  - wykrywanie i podgląd zakresów z brakującymi danymi,
-  - **średnia krocząca** (rolling mean) dla `Score` (w notebooku ustawione jako okno 365).
+- Imports Samsung Health CSV data into a `pandas.DataFrame`
+- Selects and inspects relevant measurement fields, including:
+  - Measurement timestamps
+  - `Max`
+  - `Min`
+  - `Score`
+- Checks the range and basic quality of `Score` values
+- Detects missing values in numeric columns
+- Removes incomplete records where required for the analysis
+- Converts timestamp columns to `datetime`
+- Sorts measurements chronologically
+- Visualizes stress-score trends over time
+- Creates focused date-range views for closer inspection
+- Identifies periods with missing measurements
+- Calculates a rolling mean to smooth the `Score` time series
 
-## Struktura repozytorium
+## Repository Contents
 
-- `csv-project.ipynb` — główny notatnik z analizą.
-- `data/` — katalog na plik CSV z danymi wejściowymi.
-- `README.md` — opis projektu.
+- `csv-project.ipynb` — the main analysis notebook
+- `data/` — directory for the input CSV file
+- `README.md` — project documentation
 
-## Wymagania
+## Technologies
 
-Notebook używa Pythona oraz bibliotek:
+- Python
+- Jupyter Notebook / JupyterLab
+- pandas
+- Matplotlib
 
-- `pandas`
-- `matplotlib`
+The notebook also uses Python's built-in `math` and `datetime` modules.
 
-(Notebook importuje też `math` i `datetime`.)
+## Getting Started
 
-## Jak uruchomić
+### 1. Clone the repository
 
-1. Sklonuj repozytorium:
-   ```bash
-   git clone https://github.com/Brozi/ked-project-csv.git
-   cd ked-project-csv
-   ```
+```bash
+git clone https://github.com/Brozi/samsung-health-data-analysis.git
+cd samsung-health-data-analysis
+```
 
-2. Umieść plik z danymi w katalogu `data/` (lub dostosuj ścieżkę w notebooku).
-   Domyślna ścieżka w notatniku:
-   - `data/samsung-health-stress-data.csv`
+### 2. Add the input data
 
-3. Uruchom Jupyter Notebook / Jupyter Lab:
-   ```bash
-   jupyter lab
-   ```
-   albo:
-   ```bash
-   jupyter notebook
-   ```
+Place your Samsung Health export in the `data/` directory. The notebook expects the following default path:
 
-4. Otwórz `csv-project.ipynb` i uruchom komórki.
+```text
+data/samsung-health-stress-data.csv
+```
 
-## Dane wejściowe (format)
+If your file has a different name or location, update the path in `csv-project.ipynb`.
 
-Notebook zakłada, że plik CSV zawiera kolumny odpowiadające m.in.:
+### 3. Launch Jupyter
+
+```bash
+jupyter lab
+```
+
+Alternatively:
+
+```bash
+jupyter notebook
+```
+
+### 4. Run the notebook
+
+Open `csv-project.ipynb` and execute the cells from top to bottom.
+
+## Expected Input Format
+
+The CSV file should contain columns corresponding to the following fields:
 
 - `Start time`
 - `Update time`
@@ -70,8 +85,25 @@ Notebook zakłada, że plik CSV zawiera kolumny odpowiadające m.in.:
 - `Min`
 - `Score`
 
-Jeżeli Twój eksport ma inne nazwy/układ kolumn, dostosuj parametry `read_csv(...)` w notebooku (np. `usecols`, `names`).
+Samsung Health exports may differ depending on the application version or export settings. If your file uses different column names or an alternate structure, adjust the `pandas.read_csv(...)` configuration in the notebook, including options such as `usecols` or `names`.
 
-## Wyniki
+## Output
 
-Wynikiem są wydruki kontrolne w konsoli (np. podgląd końcowych rekordów, zakres wartości, rekordy z brakami) oraz wykresy pokazujące zmianę poziomu stresu (`Score`) w czasie, w tym wygładzony trend (średnia krocząca).
+The notebook produces:
+
+- Data-inspection output, including sample records and value ranges
+- Missing-data diagnostics
+- Time-series charts of stress `Score`
+- Date-range visualizations for detailed exploration
+- A rolling-average trend line for identifying longer-term patterns
+
+## Why This Project
+
+This project showcases core data-analysis skills in a realistic, personal-data context:
+
+- Working with semi-structured exported data
+- Cleaning and validating raw datasets
+- Handling missing values
+- Transforming date and time fields
+- Creating clear, purposeful visualizations
+- Using rolling statistics to reveal trends in noisy time-series data
